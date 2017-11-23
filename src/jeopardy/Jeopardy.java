@@ -1,7 +1,7 @@
 
 package jeopardy;
 
-import Views.Tablero;
+import Views.ViewTablero;
 import java.awt.Dimension;
 import javax.swing.*;
 
@@ -22,7 +22,7 @@ public class Jeopardy {
     // private static final String nombreFichero="Deporte";
 
     public static void main(String[] args) {
-        Tablero tablero = new Tablero();
+        ViewTablero tablero = new ViewTablero();
         tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tablero.setVisible(true);
         tablero.setSize(new Dimension(900, 500));

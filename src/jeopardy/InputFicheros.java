@@ -14,7 +14,7 @@ public class InputFicheros {
     private String nombreFichero="Deporte";
     public static ArrayList<Pregunta>leerPreguntas(String nombreFichero) throws IOException{
         ArrayList<Pregunta> preguntaLectura = new ArrayList<>();
-        Path path = Paths.get(nombreFichero + ".txt");
+        Path path = Paths.get("Categorias/"+nombreFichero + ".txt");
         BufferedReader br = null;
        try {
              br = Files.newBufferedReader(path, java.nio.charset.StandardCharsets.UTF_8);
@@ -36,7 +36,7 @@ public class InputFicheros {
             if (br != null) {
                 try {
                     br.close();
-                    
+                    //no such file exception
                 } catch (IOException ex) {
                     
                     System.out.println("Error: " + ex.getMessage());

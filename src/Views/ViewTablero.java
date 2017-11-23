@@ -1,17 +1,21 @@
 
 package Views;
 
-import Controller.Controlador;
+import Controller.ControllerTablero;
+import Model.Pregunta;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
  
 
-public class Tablero extends JFrame{
+public class ViewTablero extends JFrame{
     public JLabel[] categoryNames = new JLabel[6];
     public JButton[][] buttonArray = new JButton[6][5];
-    private Controlador controlador;
-    public Tablero(){
+    private ControllerTablero controlador;
+    private Pregunta preg;
+    public ViewTablero(){
         setLayout(new GridLayout(6,5));
        
        addComponentsToPane(this);
@@ -35,6 +39,11 @@ public class Tablero extends JFrame{
         for (int j = 0; j < buttonArray.length; ++j){
             buttonArray[j][i] = new JButton(nombreBoton[i]);
             buttonArray[j][i].setSize(150, 100);
+            buttonArray[j][i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ViewPregunta view = new ViewPregunta(preg);
+                }
+            });
             panel.add(buttonArray[j][i], BorderLayout.CENTER);
         }
     }
@@ -53,12 +62,12 @@ public class Tablero extends JFrame{
             this.doubleRound();
         }
     }*/
-     public void addListeners(Controlador controller) {
+     /*public void addListeners(ControllerTablero controller) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
                 buttonArray[i][j].addActionListener(controller);
             }
         }
         this.addWindowListener(controller);
-    }
+    }***/
 }
