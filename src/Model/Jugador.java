@@ -25,15 +25,14 @@ public class Jugador {
         this.puntos = puntos;
     }
     
-    public void sumarPuntos(){
-        int sumaPuntos = 0;
-        sumaPuntos=sumaPuntos + getPuntos();
+    public void sumarPuntos(int puntos){
+        this.puntos += puntos;
     }
     
     public void restarPuntos(int valorPregunta){
         int puntosActuales;
         puntosActuales = getPuntos() -  valorPregunta;
-    } 
+    }
     ///metodo vcm
       /*public void cambiarPuntuaciobn(int puntos) {
         if (this.turno == 15) {

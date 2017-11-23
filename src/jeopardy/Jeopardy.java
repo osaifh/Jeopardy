@@ -1,6 +1,7 @@
 
 package jeopardy;
 
+import Controller.ControllerTablero;
 import Views.ViewTablero;
 import java.awt.Dimension;
 import javax.swing.*;
@@ -27,6 +28,7 @@ public class Jeopardy {
         tablero.setVisible(true);
         tablero.setSize(new Dimension(900, 500));
         tablero.setTitle("Jeopardy");
+        ControllerTablero controlador = new ControllerTablero(tablero);
     /* ArrayList<Pregunta> preguntaLectura = new ArrayList<>();
         Path path = Paths.get(nombreFichero + ".txt");
         BufferedReader br = null;

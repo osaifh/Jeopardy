@@ -9,55 +9,35 @@ import Model.Pregunta;
 import Views.ViewPregunta;
 import Views.ViewTablero;
 import java.awt.event.*;
+import javax.swing.JButton;
 
 /**
  *
  * @author VCMWORK
  */
-public class ControllerTablero implements ActionListener, WindowListener {
+public class ControllerTablero implements ActionListener {
 private ViewTablero vistaTablero;
 private ViewPregunta vistaPregunta;
-private ControllerPreguntas contrallerPreguntas;
+private ControllerPreguntas controllerPreguntas;
 private Pregunta pregunta;
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        System.out.println(((JButton)ae.getSource()).getName());
+        
+        //ControllerPreguntas contPreg = new ControllerPreguntas();
         
     }
 
-    @Override
-    public void windowOpened(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ControllerTablero(ViewTablero vistaTablero) {
+        this.vistaTablero = vistaTablero;
+        JButton[][] botones = vistaTablero.getBotones();
+        for (int i = 0; i < botones.length; i++){
+            for (int j = 0; j < botones[i].length; j++){
+                botones[i][j].addActionListener(this);
+            }
+        }
     }
 
-    @Override
-    public void windowClosing(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowClosed(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowIconified(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowActivated(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent we) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
