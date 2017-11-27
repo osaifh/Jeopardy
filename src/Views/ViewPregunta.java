@@ -10,28 +10,41 @@ public class ViewPregunta extends JFrame {
     private JRadioButton respuesta1;
     private JRadioButton respuesta2;
     private JRadioButton respuesta3;
-    private JButton intento;
+    private JButton responder;
     
-    public ViewPregunta(Pregunta modelP){
-    this.modelP=modelP;
-    respuestas = modelP.getRespuestas();
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public  ViewPregunta(Pregunta modelP){
+        this.modelP=modelP;
+        respuestas = modelP.getRespuestas();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    addComponentsToPane(this.getContentPane());
-    this.setResizable(false);
+        addComponentsToPane(this.getContentPane());
+        this.setResizable(false);
         this.setVisible(true);
-        this.pack(); //me esta dando errores
+        this.pack(); 
     }
      private void addComponentsToPane(Container panel) {
       JLabel pregunta = new JLabel(modelP.getTexto());
        JPanel respuesta = new JPanel();
+       JPanel resp = new JPanel();
+       ButtonGroup group = new ButtonGroup();
+
        respuesta.setLayout(new GridLayout(3, 1));
        respuesta1 = new JRadioButton(respuestas[0]);
        respuesta2 = new JRadioButton(respuestas[1]);
        respuesta3 = new JRadioButton(respuestas[2]);
+         group.add(respuesta1);
+         group.add(respuesta2);
+         group.add(respuesta3);
+
+       responder = new JButton();
+       responder.setText("Responde");
        respuesta.add(respuesta1);
        respuesta.add(respuesta2);
        respuesta.add(respuesta3);
+       resp.add(responder);
+       panel.add(pregunta, BorderLayout.NORTH);
+       panel.add(respuesta, BorderLayout.CENTER);
+       panel.add(resp, BorderLayout.SOUTH);
      }
       public void addListeners(ViewPregunta preguntasController) {
 
@@ -52,8 +65,11 @@ public class ViewPregunta extends JFrame {
                 }
             }
         }
-    }  
-    
+    }
+
+    public JButton devuelveBottonRespuesta() {
+        return responder;
+    }
     public void cambiarColorVerde(int respuesta) {
         if (respuesta == 0) {
             respuesta1.setBackground(Color.GREEN);
@@ -77,8 +93,6 @@ public class ViewPregunta extends JFrame {
             respuesta3.setBackground(Color.red);
         }
     }
-
-    public void txt() {
-        intento.setText("Siguiente");
-    }
+        
+  
 }

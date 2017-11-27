@@ -46,7 +46,6 @@ public class ViewTablero extends JFrame{
             buttonArray[j][i] = new JButton(nombreBoton[i]);
             buttonArray[j][i].setSize(150, 100);
             buttonArray[j][i].setName("x: "+j+" y: "+i);
-            
             panel.add(buttonArray[j][i], BorderLayout.CENTER);
         }
         

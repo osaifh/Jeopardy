@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class InputFicheros {
-    private String nombreFichero="Deporte";
     public static ArrayList<Pregunta>leerPreguntas(String nombreFichero) throws IOException{
         ArrayList<Pregunta> preguntaLectura = new ArrayList<>();
-        Path path = Paths.get("Categorias/"+nombreFichero + ".txt");
+        Path path = Paths.get("Categorias/"+"Ciencia" + ".txt");
         BufferedReader br = null;
        try {
              br = Files.newBufferedReader(path, java.nio.charset.StandardCharsets.UTF_8);

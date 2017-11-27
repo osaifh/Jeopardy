@@ -9,7 +9,13 @@ import Model.Pregunta;
 import Views.ViewPregunta;
 import Views.ViewTablero;
 import java.awt.event.*;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import jeopardy.InputFicheros;
 
 /**
  *
@@ -20,24 +26,36 @@ private ViewTablero vistaTablero;
 private ViewPregunta vistaPregunta;
 private ControllerPreguntas controllerPreguntas;
 private Pregunta pregunta;
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        System.out.println(((JButton)ae.getSource()).getName());
-        
-        //ControllerPreguntas contPreg = new ControllerPreguntas();
-        
-    }
+private JButton[][] botones;
+private ArrayList<Pregunta> listaPreguntas;
 
     public ControllerTablero(ViewTablero vistaTablero) {
         this.vistaTablero = vistaTablero;
-        JButton[][] botones = vistaTablero.getBotones();
+        botones = vistaTablero.getBotones();
         for (int i = 0; i < botones.length; i++){
             for (int j = 0; j < botones[i].length; j++){
                 botones[i][j].addActionListener(this);
             }
         }
+        try {
+            listaPreguntas = InputFicheros.leerPreguntas("Deporte");
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerPreguntas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void actionPerformed(ActionEvent ae) {
+        System.out.println("bsdflisdf");
+        System.out.println(((JButton)ae.getSource()).getName());
+        pregunta = listaPreguntas.get(0);
+        
+        //ViewPregunta viewP = new ViewPregunta(pregunta);
+        ControllerPreguntas contPreg = new ControllerPreguntas(pregunta,this);
+        
     }
 
-    
+    public void responderPregunta(Pregunta pregunta, int respuesta){
+        
+    }
 }
