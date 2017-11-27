@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/VCMWORK/Documents/NetBeansProjects/Jeopardy2/Jeopardy/src/Views/ViewTablero.java</file>
             <file>file:/C:/Users/VCMWORK/Documents/NetBeansProjects/Jeopardy2/Jeopardy/src/Model/Pregunta.java</file>
@@ -9,5 +10,8 @@
             <file>file:/C:/Users/VCMWORK/Documents/NetBeansProjects/Jeopardy2/Jeopardy/src/Views/ViewPregunta.java</file>
             <file>file:/C:/Users/VCMWORK/Documents/NetBeansProjects/Jeopardy2/Jeopardy/src/jeopardy/Jeopardy.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 9488f1c8d80bfdf8695d724f7154467dcd9c18d1
     </open-files>
 </project-private>

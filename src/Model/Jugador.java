@@ -2,19 +2,14 @@
 package Model;
 
 public class Jugador {
-   protected String nombreJugador;
+    protected String nombreJugador;
     protected int puntos;
 
     public Jugador() {
     }
 
-
     public String getNombreJugador() {
         return nombreJugador;
-    }
-
-    public void setNombreJugador(String nombreJugador) {
-        this.nombreJugador = nombreJugador;
     }
 
     public int getPuntos() {
@@ -24,6 +19,7 @@ public class Jugador {
     public void setPuntos(int puntos) {
         this.puntos = puntos;
     }
+<<<<<<< HEAD
     
     public void sumarPuntos(int puntos){
         this.puntos += puntos;
@@ -40,4 +36,10 @@ public class Jugador {
         }
         this.puntuacion = puntuacion + puntos;
     }*/
+=======
+
+    public void sumarPuntos(int puntos){
+        this.puntos += puntos;
+    }
+>>>>>>> 9488f1c8d80bfdf8695d724f7154467dcd9c18d1
 }
