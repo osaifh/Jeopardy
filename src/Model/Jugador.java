@@ -5,7 +5,9 @@ public class Jugador {
    protected String nombreJugador;
     protected int puntos;
 
-    public Jugador() {
+    public Jugador(String nombre) {
+        this.nombreJugador = nombre;
+        puntos = 0;
     }
 
 

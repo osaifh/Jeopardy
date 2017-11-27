@@ -2,7 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import jeopardy.Pregunta;
+import jeopardy.InputFicheros;
 
 /**
  *
@@ -11,14 +11,25 @@ import jeopardy.Pregunta;
 public class Juego {
     private Jugador[] jugadores;
     private int contadorTurnos, numeroPreguntas, numeroPreguntasRespondidas;
-    //private HashMap <String, HashMap <Integer,Pregunta>> preguntas;
-    private ArrayList<Pregunta> preguntas;
+    private HashMap <String, HashMap <Integer,Pregunta>> preguntas;
+
     private boolean running;
+    public final static int[] PUNTUACIONES = {100, 200, 300, 400, 500};
+    public final static String[] CATEGORIAS =
+    {
+        "Arte",
+        "Ciencia",
+        "Deporte",
+        "Entretenimiento",
+        "Geografia",
+        "Literatura"
+    };
     
-    public Juego(Jugador[] jugadores, ArrayList<Pregunta> preguntas){
+    
+    public Juego(Jugador[] jugadores){
         this.jugadores = jugadores;
-        this.preguntas = preguntas;
         running = true;
+        preguntas = InputFicheros.leerPreguntas(CATEGORIAS);
     }
     
     /**
@@ -39,12 +50,18 @@ public class Juego {
     
     /**
      * esta funcion se usa de manera temporal mientras aun estamos usando un arraylist para almacenar los datos
-     * @param indice el indice de la pregunta
+     * @param categoria
+     * @param puntuacion
      * @return 
      */
-    public Pregunta getPregunta(int indice){
-        return preguntas.get(indice);
+    public Pregunta getPregunta(String categoria, int puntuacion){
+        return preguntas.get(categoria).get(puntuacion);
     }
+    
+    public Pregunta getPregunta(int x, int y){
+        return preguntas.get(CATEGORIAS[x]).get(PUNTUACIONES[y]);
+    }
+    
     
     /**
      * Retorna true si el juego no se ha acabado
@@ -73,6 +90,8 @@ public class Juego {
             running = false;
         }
         ++contadorTurnos;
+        System.out.println("Jugador 1 " + jugadores[0].getPuntos());
+        System.out.println("Jugador 2 " + jugadores[1].getPuntos());
     }
     
     

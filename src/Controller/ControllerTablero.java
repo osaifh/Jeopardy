@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Juego;
 import Model.Pregunta;
 import Views.ViewPregunta;
 import Views.ViewTablero;
@@ -25,11 +26,11 @@ public class ControllerTablero implements ActionListener {
 private ViewTablero vistaTablero;
 private ViewPregunta vistaPregunta;
 private ControllerPreguntas controllerPreguntas;
-private Pregunta pregunta;
 private JButton[][] botones;
-private ArrayList<Pregunta> listaPreguntas;
+private Juego juego;
 
-    public ControllerTablero(ViewTablero vistaTablero) {
+    public ControllerTablero(Juego juego, ViewTablero vistaTablero) {
+        this.juego = juego;
         this.vistaTablero = vistaTablero;
         botones = vistaTablero.getBotones();
         for (int i = 0; i < botones.length; i++){
@@ -37,25 +38,19 @@ private ArrayList<Pregunta> listaPreguntas;
                 botones[i][j].addActionListener(this);
             }
         }
-        try {
-            listaPreguntas = InputFicheros.leerPreguntas("Deporte");
-        } catch (IOException ex) {
-            Logger.getLogger(ControllerPreguntas.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     
     public void actionPerformed(ActionEvent ae) {
-        System.out.println("bsdflisdf");
-        System.out.println(((JButton)ae.getSource()).getName());
-        pregunta = listaPreguntas.get(0);
-        
-        //ViewPregunta viewP = new ViewPregunta(pregunta);
+       String[] codigo = ((JButton)ae.getSource()).getName().split(":");
+       int x = Integer.parseInt(codigo[1]);
+       int y = Integer.parseInt(codigo[3]);
+        Pregunta pregunta = juego.getPregunta(x, y);
         ControllerPreguntas contPreg = new ControllerPreguntas(pregunta,this);
-        
+        ((JButton)ae.getSource()).setEnabled(false);
     }
 
     public void responderPregunta(Pregunta pregunta, int respuesta){
-        
+        juego.preguntaRespondida(pregunta, respuesta);
     }
 }
