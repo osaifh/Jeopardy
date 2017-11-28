@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import Model.Juego;
@@ -11,10 +6,6 @@ import Views.ViewTablero;
 import java.awt.event.*;
 import javax.swing.JButton;
 
-/**
- *
- * @author VCMWORK
- */
 public class ControllerTablero implements ActionListener {
 private ViewTablero vistaTablero;
 private ControllerPreguntas controllerPreguntas;
@@ -50,5 +41,15 @@ private boolean ocupado;
     
     public void finDeTurno(){
         ocupado = false;
+        setPuntuacionBotones();
+    }
+    
+    public void setPuntuacionBotones(){
+        JButton[][] botones = vistaTablero.getBotones();
+        for (int i = 0; i < botones[0].length; i++){
+            for (int j = 0; j < botones.length; j++){
+                botones[j][i].setText(juego.getStringPuntuacion(i));
+            }
+        }
     }
 }

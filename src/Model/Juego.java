@@ -1,17 +1,13 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import jeopardy.InputFicheros;
 
-/**
- *
- * @author Alumne
- */
 public class Juego {
     private Jugador[] jugadores;
-    private int contadorTurnos, numeroPreguntas, numeroPreguntasRespondidas;
+    private int contadorTurnos, numeroPreguntas;
     private HashMap <String, HashMap <Integer,Pregunta>> preguntas;
+    private boolean rondaDoble;
 
     private boolean running;
     public final static int[] PUNTUACIONES = {100, 200, 300, 400, 500};
@@ -77,23 +73,30 @@ public class Juego {
      * @param respuestaUsuario la respuesta del usuario
      */
     public boolean preguntaRespondida(Pregunta pregunta, int respuestaUsuario){
-        if (pregunta.getRespuestaCorrecta()==respuestaUsuario){
-            //respuesta correcta
-            jugadores[contadorTurnos%2].sumarPuntos(pregunta.getValorRespuesta());
+        int puntos = pregunta.getValorRespuesta();
+        if (rondaDoble) puntos *= 2;
+        if (!(pregunta.getRespuestaCorrecta()==respuestaUsuario)){
+            puntos = -puntos;
         }
-        else {
-            //respuesta incorrecta
-            jugadores[contadorTurnos%2].sumarPuntos(-pregunta.getValorRespuesta());
-        }
-        ++numeroPreguntasRespondidas;
-        if (numeroPreguntasRespondidas == numeroPreguntas){
+        jugadores[contadorTurnos%2].sumarPuntos(puntos);
+        if (contadorTurnos == numeroPreguntas){
             running = false;
         }
         ++contadorTurnos;
-        System.out.println("Jugador 1 " + jugadores[0].getPuntos());
-        System.out.println("Jugador 2 " + jugadores[1].getPuntos());
+        rondaDoble = (contadorTurnos%2==0);
+        System.out.println("Jugador " + jugadores[0].getNombreJugador() + " puntos:" + jugadores[0].getPuntos());
+        System.out.println("Jugador " + jugadores[1].getNombreJugador() + " puntos:" + jugadores[1].getPuntos());
         return (pregunta.getRespuestaCorrecta()==respuestaUsuario);
     }
     
+    public boolean isRondaDoble(){
+        return rondaDoble;
+    }
     
+    public String getStringPuntuacion(int i){
+        if (rondaDoble){
+            return ""+2*PUNTUACIONES[i];
+        }
+        return ""+PUNTUACIONES[i];
+    }
 }

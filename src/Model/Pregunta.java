@@ -1,11 +1,10 @@
-
 package Model;
 
 public class Pregunta {
-    private String texto;
-    private String[] respuestas;
-    private int respuestaCorrecta;
-    private int valorRespuesta;
+    private final String texto;
+    private final String[] respuestas;
+    private final int respuestaCorrecta;
+    private final int valorRespuesta;
 
     public Pregunta(String texto, String[] respuestas, int respuestaCorrecta, int valorRespuesta) {
         this.texto = texto;
@@ -13,10 +12,7 @@ public class Pregunta {
         this.respuestaCorrecta = respuestaCorrecta;
         this.valorRespuesta = valorRespuesta;
     }
-
-    Pregunta() {
-    }
-
+    
     public String getTexto() {
         return texto;
     }

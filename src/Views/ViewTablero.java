@@ -1,4 +1,3 @@
-
 package Views;
 
 import Controller.ControllerTablero;
@@ -9,7 +8,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
  
 public class ViewTablero extends JFrame {
-
     public JLabel[] categoryNames = new JLabel[6];
     public JButton[][] buttonArray = new JButton[6][5];
     private ControllerTablero controlador;
@@ -55,5 +53,5 @@ public class ViewTablero extends JFrame {
     public JButton[][] getBotones() {
         return buttonArray;
     }
-    
+
 }

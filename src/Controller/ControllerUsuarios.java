@@ -1,4 +1,3 @@
-
 package Controller;
 
 import Model.Juego;
@@ -8,21 +7,19 @@ import Views.ViewUsuarios;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class ControllerVista implements ActionListener{
+public class ControllerUsuarios implements ActionListener{
     private ViewUsuarios vistaUsuarios;
     private Jugador[] usuarios = new Jugador[2];
-    private JButton ok;
-    public ControllerVista(ViewUsuarios vistaUsuarios) {
+    
+    public ControllerUsuarios(ViewUsuarios vistaUsuarios) {
         this.vistaUsuarios = vistaUsuarios;
-       
+        vistaUsuarios.getBoton().addActionListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource()==this.ok){
         usuarios[0] = new Jugador(vistaUsuarios.obtenerNombreUsuarios()[0]);
         usuarios[1] = new Jugador(vistaUsuarios.obtenerNombreUsuarios()[1]);
         Juego juego = new Juego(usuarios);
@@ -32,6 +29,7 @@ public class ControllerVista implements ActionListener{
         tablero.setSize(new Dimension(900, 500));
         tablero.setTitle("Jeopardy");
         ControllerTablero contTablero = new ControllerTablero(juego,tablero);
+        vistaUsuarios.dispose();
     }
-}
+    
 }
