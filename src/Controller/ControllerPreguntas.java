@@ -19,7 +19,6 @@ public class ControllerPreguntas implements ActionListener {
     };
     private Timer timer = new Timer(3000,taskPerformer);
     
-
     public ControllerPreguntas(Pregunta preguntaModel, ControllerTablero controllerTablero, Juego juego) {
         this.pregunta = preguntaModel;
         this.controllerTablero = controllerTablero;
