@@ -5,7 +5,8 @@ public class Jugador {
    protected String nombreJugador;
     protected int puntos;
 
-    public Jugador() {
+    public  Jugador(String nombreJugador) {
+        this.nombreJugador = nombreJugador;
     }
 
 
@@ -33,11 +34,5 @@ public class Jugador {
         int puntosActuales;
         puntosActuales = getPuntos() -  valorPregunta;
     }
-    ///metodo vcm
-      /*public void cambiarPuntuaciobn(int puntos) {
-        if (this.turno == 15) {
-            puntos = puntos * 2;
-        }
-        this.puntuacion = puntuacion + puntos;
-    }*/
+    
 }

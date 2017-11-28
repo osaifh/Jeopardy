@@ -50,22 +50,6 @@ public class ViewTablero extends JFrame{
         }
         
     }
-    //panel usuarios
-          /*  JPanel usuarioPanel = new JPanel();
-            usuarioPanel.setLayout(new GridLayout(1, 3));
-            jugador1 = new JLabel("Jugador1", SwingConstants.CENTER);
-            turnoJugador = new JLabel("0", SwingConstants.CENTER);
-            jugador2 = new JLabel("Jugador2", SwingConstants.CENTER);
-             Border b = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
-                Dimension d = jugador1.getPreferredSize();
-                d.width = 80;
-                jugador1.setBorder(b);
-           jugador1.setPreferredSize(d);
-
-            usuarioPanel.add(jugador1);
-            usuarioPanel.add(turnoJugador);
-            usuarioPanel.add(jugador2);
-            panel.add(usuarioPanel, BorderLayout.NORTH);*/
     
     }
      public void doubleRound() {
