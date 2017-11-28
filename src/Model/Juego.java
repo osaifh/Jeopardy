@@ -7,9 +7,7 @@ public class Juego {
     private Jugador[] jugadores;
     private int contadorTurnos, numeroPreguntas;
     private HashMap <String, HashMap <Integer,Pregunta>> preguntas;
-    private boolean rondaDoble;
-
-    private boolean running;
+    private boolean rondaDoble, running;
     public final static int[] PUNTUACIONES = {100, 200, 300, 400, 500};
     public final static String[] CATEGORIAS =
     {
@@ -63,7 +61,7 @@ public class Juego {
      * Retorna true si el juego no se ha acabado
      * @return retorna true si el juego no se ha acabado
      */
-    public boolean getRunning(){
+    public boolean isRunning(){
         return running;
     }
     
@@ -83,7 +81,7 @@ public class Juego {
             running = false;
         }
         ++contadorTurnos;
-        rondaDoble = (contadorTurnos%2==0);
+        rondaDoble = (contadorTurnos%20==0);
         System.out.println("Jugador " + jugadores[0].getNombreJugador() + " puntos:" + jugadores[0].getPuntos());
         System.out.println("Jugador " + jugadores[1].getNombreJugador() + " puntos:" + jugadores[1].getPuntos());
         return (pregunta.getRespuestaCorrecta()==respuestaUsuario);
@@ -98,5 +96,10 @@ public class Juego {
             return ""+2*PUNTUACIONES[i];
         }
         return ""+PUNTUACIONES[i];
+    }
+    
+    public Jugador getGanador(){
+        if (jugadores[0].getPuntos()>jugadores[1].getPuntos()) return jugadores[0];
+        return jugadores[1];
     }
 }

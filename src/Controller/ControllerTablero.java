@@ -42,6 +42,9 @@ private boolean ocupado;
     public void finDeTurno(){
         ocupado = false;
         setPuntuacionBotones();
+        if (!juego.isRunning()){
+            finDelJuego();
+        }
     }
     
     public void setPuntuacionBotones(){
@@ -51,5 +54,10 @@ private boolean ocupado;
                 botones[j][i].setText(juego.getStringPuntuacion(i));
             }
         }
+    }
+    
+    private void finDelJuego(){
+        ControllerResultado controladorResultado = new ControllerResultado(juego);
+        vistaTablero.dispose();
     }
 }
