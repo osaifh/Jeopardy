@@ -76,7 +76,7 @@ public class Juego {
      * @param pregunta la pregunta respondida
      * @param respuestaUsuario la respuesta del usuario
      */
-    public void preguntaRespondida(Pregunta pregunta, int respuestaUsuario){
+    public boolean preguntaRespondida(Pregunta pregunta, int respuestaUsuario){
         if (pregunta.getRespuestaCorrecta()==respuestaUsuario){
             //respuesta correcta
             jugadores[contadorTurnos%2].sumarPuntos(pregunta.getValorRespuesta());
@@ -92,6 +92,7 @@ public class Juego {
         ++contadorTurnos;
         System.out.println("Jugador 1 " + jugadores[0].getPuntos());
         System.out.println("Jugador 2 " + jugadores[1].getPuntos());
+        return (pregunta.getRespuestaCorrecta()==respuestaUsuario);
     }
     
     

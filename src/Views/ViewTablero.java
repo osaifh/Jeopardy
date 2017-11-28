@@ -5,13 +5,9 @@ import Controller.ControllerTablero;
 import Model.Juego;
 import Model.Pregunta;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
  
-
 public class ViewTablero extends JFrame {
 
     public JLabel[] categoryNames = new JLabel[6];
@@ -19,24 +15,25 @@ public class ViewTablero extends JFrame {
     private ControllerTablero controlador;
     private Pregunta preg;
     private JLabel jugador1;
-    private JLabel turnoJugador;
     private JLabel jugador2;
+    private JLabel turnoJugador;
 
     public ViewTablero() {
         setLayout(new GridLayout(6, 5));
-
         addComponentsToPane(this);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     private void addComponentsToPane(Container panel) {
         String[] nombreBoton = new String[5];
-        for (int i = 0; i < nombreBoton.length; ++i) nombreBoton[i] = ""+Juego.PUNTUACIONES[i];
+        for (int i = 0; i < nombreBoton.length; ++i) {
+            nombreBoton[i] = "" + Juego.PUNTUACIONES[i];
+        }
         String[] categoriaNombre = Juego.CATEGORIAS;
-        
+
         Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
 
-// panel categorias
+        // panel categorias
         for (int i = 0; i < categoriaNombre.length; ++i) {
             JLabel categoria = new JLabel(categoriaNombre[i]);
             categoria.setHorizontalAlignment(SwingConstants.CENTER);
@@ -52,21 +49,11 @@ public class ViewTablero extends JFrame {
                 buttonArray[j][i].setName("x:" + j + ":y:" + i);
                 panel.add(buttonArray[j][i], BorderLayout.CENTER);
             }
-
-        }
-
-    }
-
-    public void doubleRound() {
-        String[] doubleRoundNombreBotones = {"200", "400", "600", "800", "1000"};
-        for (int i = 0; i < doubleRoundNombreBotones.length; i++) {
-            for (int j = 0; j < 6; j++) {
-                buttonArray[i][j].setText(doubleRoundNombreBotones[i]);
-            }
         }
     }
 
     public JButton[][] getBotones() {
         return buttonArray;
     }
+    
 }

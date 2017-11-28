@@ -7,16 +7,9 @@ package Controller;
 
 import Model.Juego;
 import Model.Pregunta;
-import Views.ViewPregunta;
 import Views.ViewTablero;
 import java.awt.event.*;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import jeopardy.InputFicheros;
 
 /**
  *
@@ -24,15 +17,16 @@ import jeopardy.InputFicheros;
  */
 public class ControllerTablero implements ActionListener {
 private ViewTablero vistaTablero;
-private ViewPregunta vistaPregunta;
 private ControllerPreguntas controllerPreguntas;
 private JButton[][] botones;
 private Juego juego;
+private boolean ocupado;
 
     public ControllerTablero(Juego juego, ViewTablero vistaTablero) {
         this.juego = juego;
         this.vistaTablero = vistaTablero;
         botones = vistaTablero.getBotones();
+        ocupado = false;
         for (int i = 0; i < botones.length; i++){
             for (int j = 0; j < botones[i].length; j++){
                 botones[i][j].addActionListener(this);
@@ -41,16 +35,20 @@ private Juego juego;
     }
     
     
+    @Override
     public void actionPerformed(ActionEvent ae) {
-       String[] codigo = ((JButton)ae.getSource()).getName().split(":");
-       int x = Integer.parseInt(codigo[1]);
-       int y = Integer.parseInt(codigo[3]);
-        Pregunta pregunta = juego.getPregunta(x, y);
-        ControllerPreguntas contPreg = new ControllerPreguntas(pregunta,this);
-        ((JButton)ae.getSource()).setEnabled(false);
+        if (!ocupado){
+            String[] codigo = ((JButton)ae.getSource()).getName().split(":");
+            int x = Integer.parseInt(codigo[1]);
+            int y = Integer.parseInt(codigo[3]);
+             Pregunta pregunta = juego.getPregunta(x, y);
+             ControllerPreguntas contPreg = new ControllerPreguntas(pregunta,this,juego);
+             ((JButton)ae.getSource()).setEnabled(false);
+             ocupado = true;
+        }
     }
-
-    public void responderPregunta(Pregunta pregunta, int respuesta){
-        juego.preguntaRespondida(pregunta, respuesta);
+    
+    public void finDeTurno(){
+        ocupado = false;
     }
 }

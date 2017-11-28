@@ -7,92 +7,67 @@ import javax.swing.*;
 public class ViewPregunta extends JFrame {
     private Pregunta modelP;
     private String[] respuestas;
-    private JRadioButton respuesta1;
-    private JRadioButton respuesta2;
-    private JRadioButton respuesta3;
+    private JRadioButton[] botonesRespuesta;
     private JButton responder;
+    private ButtonGroup group;
     
-    public  ViewPregunta(Pregunta modelP){
-        this.modelP=modelP;
+    public ViewPregunta(Pregunta modelP) {
+        this.modelP = modelP;
         respuestas = modelP.getRespuestas();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addComponentsToPane(this.getContentPane());
         this.setResizable(false);
         this.setVisible(true);
-        this.pack(); 
+        this.pack();
     }
-     private void addComponentsToPane(Container panel) {
-      JLabel pregunta = new JLabel(modelP.getTexto());
-       JPanel respuesta = new JPanel();
-       JPanel resp = new JPanel();
-       ButtonGroup group = new ButtonGroup();
 
-       respuesta.setLayout(new GridLayout(3, 1));
-       respuesta1 = new JRadioButton(respuestas[0]);
-       respuesta2 = new JRadioButton(respuestas[1]);
-       respuesta3 = new JRadioButton(respuestas[2]);
-         group.add(respuesta1);
-         group.add(respuesta2);
-         group.add(respuesta3);
-
-       responder = new JButton();
-       responder.setText("Responde");
-       respuesta.add(respuesta1);
-       respuesta.add(respuesta2);
-       respuesta.add(respuesta3);
-       resp.add(responder);
-       panel.add(pregunta, BorderLayout.NORTH);
-       panel.add(respuesta, BorderLayout.CENTER);
-       panel.add(resp, BorderLayout.SOUTH);
-     }
-      public void addListeners(ViewPregunta preguntasController) {
-
-        //intento.addActionListener(preguntasController);
-
-    }   
-    public int getRespuestaSeleccionada() {
-        if (respuesta1.isSelected()) {
-            return 0;
-        } else {
-            if (respuesta2.isSelected()) {
-                return 1;
-            } else {
-                if (respuesta3.isSelected()) {
-                    return 2;
-                } else {
-                    return 3;
-                }
-            }
+    private void addComponentsToPane(Container panel) {
+        JLabel pregunta = new JLabel(modelP.getTexto());
+        JPanel respuesta = new JPanel();
+        JPanel confirmar = new JPanel();
+        group = new ButtonGroup();
+        botonesRespuesta = new JRadioButton[3];
+        respuesta.setLayout(new GridLayout(3, 1));
+        botonesRespuesta[0] = new JRadioButton(respuestas[0]);
+        botonesRespuesta[1] = new JRadioButton(respuestas[1]);
+        botonesRespuesta[2] = new JRadioButton(respuestas[2]);
+        for (JRadioButton boton : botonesRespuesta){
+            group.add(boton);
+            respuesta.add(boton);
         }
+        responder = new JButton();
+        responder.setText("Responde");
+        confirmar.add(responder);
+        panel.add(pregunta, BorderLayout.NORTH);
+        panel.add(respuesta, BorderLayout.CENTER);
+        panel.add(confirmar, BorderLayout.SOUTH);
+    }
+    
+    public int getRespuestaSeleccionada() {
+        for (int i = 0; i < botonesRespuesta.length; i++){
+            if (botonesRespuesta[i].isSelected()) return i;
+        }
+        return -1;
     }
 
-    public JButton devuelveBottonRespuesta() {
+    public JButton getBotonRespuesta() {
         return responder;
     }
+
     public void cambiarColorVerde(int respuesta) {
-        if (respuesta == 0) {
-            respuesta1.setBackground(Color.GREEN);
-        }
-        if (respuesta == 1) {
-            respuesta2.setBackground(Color.GREEN);
-        }
-        if (respuesta == 2) {
-            respuesta3.setBackground(Color.GREEN);
-        }
+        botonesRespuesta[respuesta].setBackground(Color.GREEN);
     }
 
     public void cambiarColorRojo(int respuesta) {
-        if (respuesta == 0) {
-            respuesta1.setBackground(Color.red);
-        }
-        if (respuesta == 1) {
-            respuesta2.setBackground(Color.red);
-        }
-        if (respuesta == 2) {
-            respuesta3.setBackground(Color.red);
-        }
+        botonesRespuesta[respuesta].setBackground(Color.RED);
     }
-        
-  
+
+    public boolean respuestaSeleccionada(){
+        for (JRadioButton boton : botonesRespuesta){
+            if (boton.isSelected()) return true;
+        }
+        return false;
+    }
+
 }

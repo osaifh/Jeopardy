@@ -1,7 +1,6 @@
 
 package jeopardy;
 
-import Model.Juego;
 import Model.Pregunta;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class InputFicheros {
-    
+
     public static HashMap<String, HashMap<Integer, Pregunta>> leerPreguntas(String[] categorias) {
         HashMap<String, HashMap<Integer, Pregunta>> preguntas = new HashMap<String, HashMap<Integer, Pregunta>>();
         for (String categoria : categorias) {
