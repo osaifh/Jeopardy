@@ -24,6 +24,7 @@ public class Juego {
         this.jugadores = jugadores;
         running = true;
         preguntas = InputFicheros.leerPreguntas(CATEGORIAS);
+        numeroPreguntas = CATEGORIAS.length * PUNTUACIONES.length;
     }
     
     /**
@@ -32,6 +33,10 @@ public class Juego {
      */
     public Jugador getJugadorActual(){
         return(jugadores[contadorTurnos%2]);
+    }
+    
+    public Jugador[] getJugadores(){
+        return jugadores;
     }
     
     /**
@@ -79,9 +84,10 @@ public class Juego {
         jugadores[contadorTurnos%2].sumarPuntos(puntos);
         if (contadorTurnos == numeroPreguntas){
             running = false;
+            System.out.println("Aqui acaba el juego");
         }
         ++contadorTurnos;
-        rondaDoble = (contadorTurnos%20==0);
+        rondaDoble = (contadorTurnos%19==0 || contadorTurnos%20==0);
         System.out.println("Jugador " + jugadores[0].getNombreJugador() + " puntos:" + jugadores[0].getPuntos());
         System.out.println("Jugador " + jugadores[1].getNombreJugador() + " puntos:" + jugadores[1].getPuntos());
         return (pregunta.getRespuestaCorrecta()==respuestaUsuario);

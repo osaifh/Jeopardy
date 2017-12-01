@@ -9,7 +9,11 @@ public class Jugador {
         this.nombreJugador = nombreJugador;
     }
 
-    public String getNombreJugador() {
+    public Jugador() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public  String getNombreJugador() {
         return nombreJugador;
     }
 

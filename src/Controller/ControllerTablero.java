@@ -5,6 +5,7 @@ import Model.Pregunta;
 import Views.ViewTablero;
 import java.awt.event.*;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class ControllerTablero implements ActionListener {
 private ViewTablero vistaTablero;
@@ -23,6 +24,11 @@ private boolean ocupado;
                 botones[i][j].addActionListener(this);
             }
         }
+        setDatosPartida();
+    }
+
+    ControllerTablero(ViewTablero vistaTablero) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -42,9 +48,12 @@ private boolean ocupado;
     public void finDeTurno(){
         ocupado = false;
         setPuntuacionBotones();
+        setDatosPartida();
         if (!juego.isRunning()){
             finDelJuego();
+            
         }
+        
     }
     
     public void setPuntuacionBotones(){
@@ -59,5 +68,14 @@ private boolean ocupado;
     private void finDelJuego(){
         ControllerResultado controladorResultado = new ControllerResultado(juego);
         vistaTablero.dispose();
+    }
+    private void setDatosPartida(){
+        JLabel[] datos = vistaTablero.getLabels();
+        datos[0].setText( juego.getJugadores()[0].getNombreJugador());
+        datos[1].setText(""+juego.getJugadores()[0].getPuntos());
+        datos[2].setText(""+juego.getContadorTurnos());
+        datos[4].setText( juego.getJugadores()[1].getNombreJugador());
+        datos[3].setText(""+juego.getJugadores()[1].getPuntos());
+        
     }
 }
