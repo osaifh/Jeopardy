@@ -35,7 +35,7 @@ public class InputFicheros {
                 preguntasCategoria.put(preguntas.getValorRespuesta(), preguntas);
             }
         } catch (Exception e) {
-            System.out.println("Error : " + e.getMessage());
+            System.out.println("Excepcion : " + e.getMessage());
         } finally {
             if (br != null) {
                 try {

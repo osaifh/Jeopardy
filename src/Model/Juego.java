@@ -27,7 +27,7 @@ public class Juego {
         finalRound = false;
         running = true;
         preguntas = InputFicheros.leerPreguntas(CATEGORIAS);
-        numeroPreguntas = CATEGORIAS.length * PUNTUACIONES.length;
+        numeroPreguntas = (CATEGORIAS.length-1) * PUNTUACIONES.length;
     }
     
     /**
@@ -57,6 +57,8 @@ public class Juego {
      * @return 
      */
     public Pregunta getPregunta(String categoria, int puntuacion){
+        System.out.println("Categoria " + categoria);
+        System.out.println("Puntuacion: " + puntuacion);
         return preguntas.get(categoria).get(puntuacion);
     }
     
@@ -77,6 +79,7 @@ public class Juego {
      * Procesa una pregunta respondida por un usuario, añadiendo o restando puntos dependiendo de si la respuesta es correcta
      * @param pregunta la pregunta respondida
      * @param respuestaUsuario la respuesta del usuario
+     * @return 
      */
     public boolean preguntaRespondida(Pregunta pregunta, int respuestaUsuario){
         if (!finalRound){
@@ -89,13 +92,18 @@ public class Juego {
             ++contadorTurnos;
             if (contadorTurnos == numeroPreguntas){
                 running = false;
+                finalRound = (jugadores[0].getPuntos() == jugadores[1].getPuntos());
             }
             rondaDoble = (contadorTurnos%19==0 || contadorTurnos%20==0);
-            running = false;
         } else {
             if (!(pregunta.getRespuestaCorrecta()==respuestaUsuario)){
-                
+                finalRound = false;
+                indexGanadorFinalRound = (contadorTurnos+1)%2;
             }
+            else if (contadorTurnos >= preguntas.get("FinalRound").size()-1){
+                finalRound = false;
+            }
+            ++contadorTurnos;
         }
         return (pregunta.getRespuestaCorrecta()==respuestaUsuario);
     }
@@ -112,7 +120,7 @@ public class Juego {
     }
     
     public Jugador getGanador(){
-        if (finalRound){
+        if (indexGanadorFinalRound!=-1){
             return jugadores[indexGanadorFinalRound];
         }
         if (jugadores[0].getPuntos()>jugadores[1].getPuntos()) return jugadores[0];
@@ -122,7 +130,12 @@ public class Juego {
     
     public void startFinalRound(){
         finalRound = true;
-        contadorTurnos = 1;
+        contadorTurnos = 0;
+        indexGanadorFinalRound = -1;
+    }
+    
+    public boolean isFinalRound(){
+        return  finalRound;
     }
     
     public void setGanadorFinalRound(int i){

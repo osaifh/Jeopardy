@@ -48,7 +48,10 @@ private boolean ocupado;
         ocupado = false;
         setPuntuacionBotones();
         setDatosPartida();
-        if (!juego.isRunning()){
+        if (juego.isFinalRound()){
+            rondaFinal();
+        }
+        else if (!juego.isRunning()){
             finDelJuego();
         }
     }
@@ -64,6 +67,11 @@ private boolean ocupado;
     
     private void finDelJuego(){
         ControllerResultado controladorResultado = new ControllerResultado(juego);
+        vistaTablero.dispose();
+    }
+    
+    private void rondaFinal(){
+        ControllerFinalRound cntrollerFinalRound = new ControllerFinalRound(juego);
         vistaTablero.dispose();
     }
     

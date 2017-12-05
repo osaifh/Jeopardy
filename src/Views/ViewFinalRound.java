@@ -42,13 +42,17 @@ public class ViewFinalRound extends JFrame {
         panelTurnos.setLayout(new GridLayout(1,2));
         for (int i = 0; i < panelJugadores.length; i++){
             panelJugadores[i] = new JPanel();
-            panelJugadores[i].setPreferredSize(new Dimension(300,300));
+            panelJugadores[i].setPreferredSize(new Dimension(200,200));
             panelJugadores[i].add(new JLabel(" "));
             panelTurnos.add(panelJugadores[i]);
         }
         panel.add(panelTurnos,BorderLayout.CENTER);
         go = new JButton("Responder");
         panel.add(go,BorderLayout.SOUTH);
+    }
+    
+    public JButton getBoton(){
+        return go;
     }
     
     public JPanel[] getPanelJugadores(){
