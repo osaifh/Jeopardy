@@ -3,6 +3,7 @@ package Views;
 import java.awt.*;
 import Model.Pregunta;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 
 public class ViewPregunta extends JFrame {
     private Pregunta modelP;
@@ -17,10 +18,12 @@ public class ViewPregunta extends JFrame {
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        
         addComponentsToPane(this.getContentPane());
         this.setResizable(false);
         this.setVisible(true);
         this.pack();
+        centrarPanel(this);
     }
 
     private void addComponentsToPane(Container panel) {
@@ -40,9 +43,21 @@ public class ViewPregunta extends JFrame {
         responder = new JButton();
         responder.setText("Responde");
         confirmar.add(responder);
-        panel.add(pregunta, BorderLayout.NORTH);
-        panel.add(respuesta, BorderLayout.CENTER);
-        panel.add(confirmar, BorderLayout.SOUTH);
+        JPanel panelPregunta = new JPanel();
+        panelPregunta.setLayout(new BoxLayout(panelPregunta,BoxLayout.Y_AXIS));
+        panelPregunta.add(pregunta);
+        panelPregunta.add(respuesta);
+        panelPregunta.add(confirmar);
+        panelPregunta.setBorder(new BevelBorder(BevelBorder.RAISED));
+        panel.add(panelPregunta);
+        
+    }
+    
+    private void centrarPanel(JFrame frame){
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x,y);
     }
     
     public int getRespuestaSeleccionada() {
@@ -70,5 +85,8 @@ public class ViewPregunta extends JFrame {
         }
         return false;
     }
-
+    
+    public void muestraError(String error){
+        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }

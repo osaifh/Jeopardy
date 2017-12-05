@@ -40,6 +40,8 @@ public class ControllerPreguntas implements ActionListener {
             }
             viewPregunta.getBotonRespuesta().setEnabled(false);
             timer.start();
+        } else {
+            viewPregunta.muestraError("No se ha seleccionado ninguna respuesta");
         }
     }
     

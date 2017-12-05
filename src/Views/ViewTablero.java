@@ -23,8 +23,9 @@ public class ViewTablero extends JFrame {
     public ViewTablero() {
         //setLayout(new GridLayout(6, 5));
         addComponentsToPane(this);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
     }
 
     private void addComponentsToPane(Container panel) {
@@ -85,6 +86,13 @@ public class ViewTablero extends JFrame {
         }
         panel.add(panelCategoarios, BorderLayout.CENTER);
     }
+    
+    public void centrarPanel(JFrame frame){
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+        frame.setLocation(x,y);
+    }
 
     public JButton[][] getBotones() {
         return buttonArray;
@@ -94,4 +102,7 @@ public class ViewTablero extends JFrame {
         return infoPartida;
     }
 
+    public void muestraError(String error){
+        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 }

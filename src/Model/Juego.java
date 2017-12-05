@@ -82,14 +82,12 @@ public class Juego {
             puntos = -puntos;
         }
         jugadores[contadorTurnos%2].sumarPuntos(puntos);
+        ++contadorTurnos;
         if (contadorTurnos == numeroPreguntas){
             running = false;
-            System.out.println("Aqui acaba el juego");
+            System.out.println("Fin del juego");
         }
-        ++contadorTurnos;
         rondaDoble = (contadorTurnos%19==0 || contadorTurnos%20==0);
-        System.out.println("Jugador " + jugadores[0].getNombreJugador() + " puntos:" + jugadores[0].getPuntos());
-        System.out.println("Jugador " + jugadores[1].getNombreJugador() + " puntos:" + jugadores[1].getPuntos());
         return (pregunta.getRespuestaCorrecta()==respuestaUsuario);
     }
     

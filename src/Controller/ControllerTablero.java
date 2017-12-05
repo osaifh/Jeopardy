@@ -25,13 +25,9 @@ private boolean ocupado;
             }
         }
         setDatosPartida();
+        vistaTablero.centrarPanel(vistaTablero);
     }
 
-    ControllerTablero(ViewTablero vistaTablero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (!ocupado){
@@ -43,6 +39,9 @@ private boolean ocupado;
              ((JButton)ae.getSource()).setEnabled(false);
              ocupado = true;
         }
+        else {
+            vistaTablero.muestraError("Aun no se ha respondido la pregunta");
+        }
     }
     
     public void finDeTurno(){
@@ -51,7 +50,6 @@ private boolean ocupado;
         setDatosPartida();
         if (!juego.isRunning()){
             finDelJuego();
-            
         }
         
     }
@@ -69,6 +67,7 @@ private boolean ocupado;
         ControllerResultado controladorResultado = new ControllerResultado(juego);
         vistaTablero.dispose();
     }
+    
     private void setDatosPartida(){
         JLabel[] datos = vistaTablero.getLabels();
         datos[0].setText( juego.getJugadores()[0].getNombreJugador());
@@ -76,6 +75,5 @@ private boolean ocupado;
         datos[2].setText(""+juego.getContadorTurnos());
         datos[4].setText( juego.getJugadores()[1].getNombreJugador());
         datos[3].setText(""+juego.getJugadores()[1].getPuntos());
-        
     }
 }
