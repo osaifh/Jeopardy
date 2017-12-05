@@ -18,6 +18,11 @@ public class InputFicheros {
         return preguntas;
     }
 
+    /**
+     * Retorna el hashmap correspondiente a las preguntas de una categoria, cargando los datos desde los archivos de texto en la carpeta categoria
+     * @param categoria el nombre de la categoria que queremos añadir
+     * @return 
+     */
     public static HashMap<Integer, Pregunta> leerCategoria(String categoria) {
         HashMap<Integer, Pregunta> preguntasCategoria = new HashMap<Integer, Pregunta>();
         Path path = Paths.get("Categorias/" + categoria + ".txt");

@@ -15,10 +15,8 @@ public class ViewPregunta extends JFrame {
     public ViewPregunta(Pregunta modelP) {
         this.modelP = modelP;
         respuestas = modelP.getRespuestas();
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        
         addComponentsToPane(this.getContentPane());
         this.setResizable(false);
         this.setVisible(true);

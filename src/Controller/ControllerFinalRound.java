@@ -5,8 +5,6 @@ import Model.Pregunta;
 import Views.ViewFinalRound;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javafx.scene.paint.Color;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class ControllerFinalRound implements ActionListener, IControllerPrincipal {

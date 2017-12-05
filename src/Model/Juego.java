@@ -22,6 +22,10 @@ public class Juego {
     };
     
     
+    /**
+     * Constructor generico para juego
+     * @param jugadores los jugadores para el juego
+     */
     public Juego(Jugador[] jugadores){
         this.jugadores = jugadores;
         finalRound = false;
@@ -38,6 +42,10 @@ public class Juego {
         return(jugadores[contadorTurnos%2]);
     }
     
+    /**
+     * Retorna los jugadores
+     * @return el array con los jugadores
+     */
     public Jugador[] getJugadores(){
         return jugadores;
     }
@@ -54,18 +62,21 @@ public class Juego {
      * esta funcion se usa de manera temporal mientras aun estamos usando un arraylist para almacenar los datos
      * @param categoria
      * @param puntuacion
-     * @return 
+     * @return retorna la preg
      */
     public Pregunta getPregunta(String categoria, int puntuacion){
-        System.out.println("Categoria " + categoria);
-        System.out.println("Puntuacion: " + puntuacion);
         return preguntas.get(categoria).get(puntuacion);
     }
     
+    /**
+     * retorna una pregunta con las coordenadas x, y
+     * @param x categoria
+     * @param y puntuacion
+     * @return  la pregunta correspondiente
+     */
     public Pregunta getPregunta(int x, int y){
         return preguntas.get(CATEGORIAS[x]).get(PUNTUACIONES[y]);
     }
-    
     
     /**
      * Retorna true si el juego no se ha acabado

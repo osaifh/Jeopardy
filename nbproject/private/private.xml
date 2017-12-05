@@ -3,11 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/test/Jeopardy/src/Controller/ControllerPreguntas.java</file>
             <file>file:/D:/test/Jeopardy/src/Views/ViewPregunta.java</file>
+            <file>file:/D:/test/Jeopardy/src/jeopardy/InputFicheros.java</file>
+            <file>file:/D:/test/Jeopardy/src/Views/ViewFinalRound.java</file>
+            <file>file:/D:/test/Jeopardy/src/Controller/IControllerPrincipal.java</file>
+            <file>file:/D:/test/Jeopardy/src/Controller/ControllerUsuarios.java</file>
+            <file>file:/D:/test/Jeopardy/src/Controller/ControllerPreguntas.java</file>
+            <file>file:/D:/test/Jeopardy/src/Model/Jugador.java</file>
+            <file>file:/D:/test/Jeopardy/src/Controller/ControllerResultado.java</file>
+            <file>file:/D:/test/Jeopardy/src/Views/ViewUsuarios.java</file>
             <file>file:/D:/test/Jeopardy/src/Controller/ControllerTablero.java</file>
-            <file>file:/D:/test/Jeopardy/src/Model/Juego.java</file>
+            <file>file:/D:/test/Jeopardy/src/Model/Pregunta.java</file>
+            <file>file:/D:/test/Jeopardy/src/Views/ViewResultado.java</file>
             <file>file:/D:/test/Jeopardy/src/Views/ViewTablero.java</file>
+            <file>file:/D:/test/Jeopardy/src/Controller/ControllerFinalRound.java</file>
         </group>
     </open-files>
 </project-private>
