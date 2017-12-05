@@ -20,16 +20,26 @@ public class ControllerUsuarios implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        usuarios[0] = new Jugador(vistaUsuarios.obtenerNombreUsuarios()[0]);
-        usuarios[1] = new Jugador(vistaUsuarios.obtenerNombreUsuarios()[1]);
-        Juego juego = new Juego(usuarios);
-        ViewTablero tablero = new ViewTablero();
-        tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tablero.setVisible(true);
-        tablero.setSize(new Dimension(900, 500));
-        tablero.setTitle("Jeopardy");
-        ControllerTablero contTablero = new ControllerTablero(juego,tablero);
-        vistaUsuarios.dispose();
+        String usuario1 = vistaUsuarios.obtenerNombreUsuarios()[0];
+        String usuario2 = vistaUsuarios.obtenerNombreUsuarios()[1];
+        if (usuario1.isEmpty() || usuario2.isEmpty()){
+            vistaUsuarios.muestraError("Datos incompletos");
+        }
+        else if (usuario1.equals(usuario2)){
+            vistaUsuarios.muestraError("Nombres iguales");
+        }
+        else {
+            usuarios[0] = new Jugador(usuario1);
+            usuarios[1] = new Jugador(usuario2);
+            Juego juego = new Juego(usuarios);
+            ViewTablero tablero = new ViewTablero();
+            tablero.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            tablero.setVisible(true);
+            tablero.setSize(new Dimension(900, 500));
+            tablero.setTitle("Jeopardy");
+            ControllerTablero contTablero = new ControllerTablero(juego,tablero);
+            vistaUsuarios.dispose(); 
+        }
     }
     
 }
