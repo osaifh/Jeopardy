@@ -7,7 +7,7 @@ import java.awt.event.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class ControllerTablero implements ActionListener {
+public class ControllerTablero implements ActionListener, IControllerPrincipal {
 private ViewTablero vistaTablero;
 private ControllerPreguntas controllerPreguntas;
 private JButton[][] botones;
@@ -51,7 +51,6 @@ private boolean ocupado;
         if (!juego.isRunning()){
             finDelJuego();
         }
-        
     }
     
     public void setPuntuacionBotones(){
@@ -72,7 +71,7 @@ private boolean ocupado;
         JLabel[] datos = vistaTablero.getLabels();
         datos[0].setText( juego.getJugadores()[0].getNombreJugador());
         datos[1].setText(""+juego.getJugadores()[0].getPuntos());
-        datos[2].setText(""+juego.getContadorTurnos());
+        datos[2].setText("["+(juego.getContadorTurnos()+1)+"]");
         datos[4].setText( juego.getJugadores()[1].getNombreJugador());
         datos[3].setText(""+juego.getJugadores()[1].getPuntos());
     }

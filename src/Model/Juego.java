@@ -7,7 +7,8 @@ public class Juego {
     private Jugador[] jugadores;
     private int contadorTurnos, numeroPreguntas;
     private HashMap <String, HashMap <Integer,Pregunta>> preguntas;
-    private boolean rondaDoble, running;
+    private boolean rondaDoble, running, finalRound;
+    private int indexGanadorFinalRound;
     public final static int[] PUNTUACIONES = {100, 200, 300, 400, 500};
     public final static String[] CATEGORIAS =
     {
@@ -16,12 +17,14 @@ public class Juego {
         "Deporte",
         "Entretenimiento",
         "Geografia",
-        "Literatura"
+        "Literatura",
+        "FinalRound"
     };
     
     
     public Juego(Jugador[] jugadores){
         this.jugadores = jugadores;
+        finalRound = false;
         running = true;
         preguntas = InputFicheros.leerPreguntas(CATEGORIAS);
         numeroPreguntas = CATEGORIAS.length * PUNTUACIONES.length;
@@ -76,18 +79,24 @@ public class Juego {
      * @param respuestaUsuario la respuesta del usuario
      */
     public boolean preguntaRespondida(Pregunta pregunta, int respuestaUsuario){
-        int puntos = pregunta.getValorRespuesta();
-        if (rondaDoble) puntos *= 2;
-        if (!(pregunta.getRespuestaCorrecta()==respuestaUsuario)){
-            puntos = -puntos;
-        }
-        jugadores[contadorTurnos%2].sumarPuntos(puntos);
-        ++contadorTurnos;
-        if (contadorTurnos == numeroPreguntas){
+        if (!finalRound){
+            int puntos = pregunta.getValorRespuesta();
+            if (rondaDoble) puntos *= 2;
+            if (!(pregunta.getRespuestaCorrecta()==respuestaUsuario)){
+                puntos = -puntos;
+            }
+            jugadores[contadorTurnos%2].sumarPuntos(puntos);
+            ++contadorTurnos;
+            if (contadorTurnos == numeroPreguntas){
+                running = false;
+            }
+            rondaDoble = (contadorTurnos%19==0 || contadorTurnos%20==0);
             running = false;
-            System.out.println("Fin del juego");
+        } else {
+            if (!(pregunta.getRespuestaCorrecta()==respuestaUsuario)){
+                
+            }
         }
-        rondaDoble = (contadorTurnos%19==0 || contadorTurnos%20==0);
         return (pregunta.getRespuestaCorrecta()==respuestaUsuario);
     }
     
@@ -103,7 +112,24 @@ public class Juego {
     }
     
     public Jugador getGanador(){
+        if (finalRound){
+            return jugadores[indexGanadorFinalRound];
+        }
         if (jugadores[0].getPuntos()>jugadores[1].getPuntos()) return jugadores[0];
-        return jugadores[1];
+        if (jugadores[1].getPuntos()>jugadores[0].getPuntos()) return jugadores[1];
+        return null;
+    }
+    
+    public void startFinalRound(){
+        finalRound = true;
+        contadorTurnos = 1;
+    }
+    
+    public void setGanadorFinalRound(int i){
+        indexGanadorFinalRound = i;
+    }
+    
+    public int getGanadorFinalRound(){
+        return indexGanadorFinalRound;
     }
 }

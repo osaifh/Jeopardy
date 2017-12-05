@@ -13,9 +13,16 @@ public class ControllerUsuarios implements ActionListener{
     private ViewUsuarios vistaUsuarios;
     private Jugador[] usuarios = new Jugador[2];
     
-    public ControllerUsuarios(ViewUsuarios vistaUsuarios) {
-        this.vistaUsuarios = vistaUsuarios;
+    public ControllerUsuarios() {
+        this.vistaUsuarios = new ViewUsuarios();
         vistaUsuarios.getBoton().addActionListener(this);
+    }
+    
+    public ControllerUsuarios(String jugador1, String jugador2){
+        this.vistaUsuarios = new ViewUsuarios();
+        vistaUsuarios.getBoton().addActionListener(this);
+        vistaUsuarios.getCampos()[0].setText(jugador1);
+        vistaUsuarios.getCampos()[1].setText(jugador2);
     }
     
     @Override

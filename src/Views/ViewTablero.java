@@ -21,11 +21,7 @@ public class ViewTablero extends JFrame {
     //[3] = jugador2
     //[4] = puntuacio2
     public ViewTablero() {
-        //setLayout(new GridLayout(6, 5));
         addComponentsToPane(this);
-        
-        //setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
     }
 
     private void addComponentsToPane(Container panel) {
@@ -33,27 +29,20 @@ public class ViewTablero extends JFrame {
         Border border = BorderFactory.createLineBorder(Color.BLACK, 1);
         
         JPanel jugadoresPanel = new JPanel();
-        //    GridBagConstraints c = new GridBagConstraints();
         jugadoresPanel.setLayout(new BoxLayout(jugadoresPanel, BoxLayout.X_AXIS));
         jugadoresPanel.setBackground(Color.yellow);
         infoPartida = new JLabel[5];
         for (int i = 0; i < infoPartida.length; i++) {
             infoPartida[i] = new JLabel(" ");
             infoPartida[i].setBackground(Color.yellow);
-            
             jugadoresPanel.setBorder(border);
             if (i == 0) jugadoresPanel.add(Box.createRigidArea(new Dimension(300,0)));
             if (i == 1) jugadoresPanel.add(Box.createRigidArea(new Dimension(10,0)));
             if (i == 4) jugadoresPanel.add(Box.createRigidArea(new Dimension(10,0)));
-
-
-
             jugadoresPanel.add(infoPartida[i]);
             if (i == 1) jugadoresPanel.add(Box.createHorizontalGlue());
             if (i == 2) jugadoresPanel.add(Box.createHorizontalGlue());
             if (i == 4) jugadoresPanel.add(Box.createRigidArea(new Dimension(300,0)));
-
-            
         }
 
         panel.add(jugadoresPanel, BorderLayout.NORTH);
@@ -69,7 +58,7 @@ public class ViewTablero extends JFrame {
         JPanel panelCategoarios = new JPanel();
         panelCategoarios.setLayout(new GridLayout(6, 5));
 
-        for (int i = 0; i < categoriaNombre.length; ++i) {
+        for (int i = 0; i < categoriaNombre.length-1; ++i) {
             JLabel categoria = new JLabel(categoriaNombre[i]);
             categoria.setHorizontalAlignment(SwingConstants.CENTER);
             categoria.setBorder(border);
