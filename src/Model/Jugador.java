@@ -3,7 +3,7 @@ package Model;
 
 public class Jugador {
     private String nombreJugador;
-    private int puntos, respuestasCorrectas, respuestasErroneas;
+        private int puntos, respuestasCorrectas, respuestasErroneas;
     
     public Jugador(String nombreJugador) {
         this.nombreJugador = nombreJugador;
